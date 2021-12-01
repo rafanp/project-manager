@@ -1,6 +1,6 @@
 import { jsx, css } from "@emotion/react";
-import Header from "@/components/Header";
-import Navigation from "@/components/Navigation";
+import Header from "@/components/Modules/Header";
+import Navigation from "@/components/Modules/Navigation";
 
 import { Flex } from "@chakra-ui/layout";
 import { Grid, GridItem } from "@chakra-ui/react";
