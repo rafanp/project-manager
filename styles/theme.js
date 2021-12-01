@@ -1,19 +1,19 @@
 import { extendTheme } from "@chakra-ui/react";
 
-// const colors = {
-//   brand: {
-//     900: "#1a365d",
-//     800: "#153e75",
-//     700: "#2a69ac",
-//   },
-// };
-
-// const theme = extendTheme({ colors });
 export const theme = extendTheme({
   colors: {
     beige: {
       50: "#F7F6F4",
       200: "#FFF4EE",
+    },
+    brand: {
+      900: "#1a365d",
+      800: "#153e75",
+      700: "#2a69ac",
+    },
+    primary: {
+      900: "#FD7B38",
+      700: "#FD9660",
     },
   },
   fonts: {
@@ -26,6 +26,16 @@ export const theme = extendTheme({
         bg: "beige.50",
         // bg: "gray.900",
         color: "gray.900",
+      },
+
+      "&::-webkit-scrollbar": {
+        width: "12px",
+        borderRadius: "8px",
+        backgroundColor: `rgba(0, 0, 0, 0.05)`,
+      },
+      "&::-webkit-scrollbar-thumb": {
+        backgroundColor: `rgba(0, 0, 0, 0.08)`,
+        borderRadius: "8px",
       },
     },
   },

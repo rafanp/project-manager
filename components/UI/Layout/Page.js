@@ -11,17 +11,22 @@ const Page = (props) => {
     <>
       <Grid
         h={"100vh"}
-        templateRows="50px 1fr"
+        templateRows="60px 1fr"
         templateColumns="repeat(5, 1fr)"
         mg={0}
         gap={8}
+        p={8}
+        // overflow={"hidden"}
       >
-        <GridItem rowSpan={2} colSpan={1} bg="blue" p={12}>
+        <GridItem rowSpan={2} colSpan={1}>
           <Navigation />
         </GridItem>
-        <GridItem colSpan={4} bg="papayawhip" />
 
-        <GridItem colSpan={4} bg="tomato">
+        <GridItem colSpan={4}>
+          <Header />
+        </GridItem>
+
+        <GridItem colSpan={4} overflow="auto">
           {children}
         </GridItem>
       </Grid>
@@ -30,45 +35,3 @@ const Page = (props) => {
 };
 
 export default Page;
-
-{
-  /* <Grid
-bg={"blue"}
-vw={100}
-vh={100}
-> */
-}
-{
-  /* <Flex
-
-  bg="red"
-> */
-}
-{
-  /* <Navigation /> */
-}
-{
-  /* </Flex> */
-}
-{
-  /* <Grid
-  item
-  css={css`
-    background-color: darkmagenta;
-    display: flex;
-    width: 100%;
-  `}
-> */
-}
-{
-  /* {children} */
-}
-{
-  /* <Grid item>{children}</Grid> */
-}
-{
-  /* </Grid> */
-}
-{
-  /* </Grid> */
-}
