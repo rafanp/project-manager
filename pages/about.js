@@ -1,4 +1,4 @@
-import AnotherLayout from "@/components/Layout/AnotherLayout";
+import AnotherLayout from "@/components/layout/AnotherLayout";
 
 const About = () => {
   return (

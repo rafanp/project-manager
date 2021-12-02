@@ -1,7 +1,7 @@
 import { Grid, GridItem } from "@chakra-ui/layout";
 
-import TodoList from "@/components/Tasks/components/TodoList";
-import ActionBar from "@/components/Tasks/components/actionBar";
+import TodoList from "@/components/screens/tasks/toDos/todoList";
+import ActionBar from "@/components/screens/tasks/toDos/actionBar";
 
 const Tasks = () => {
   return (

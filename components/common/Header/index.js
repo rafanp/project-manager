@@ -3,7 +3,7 @@ import { Flex } from "@chakra-ui/layout";
 import { FiSearch, FiBell } from "react-icons/fi";
 import { Icon } from "@chakra-ui/react";
 import { Avatar } from "@chakra-ui/avatar";
-import Input from "@/components/UI/Input/Input";
+import Input from "@/components/ui/Input/Input";
 
 const Header = () => {
   return (

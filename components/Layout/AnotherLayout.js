@@ -1,5 +1,5 @@
-import Header from "@/components/Modules/Header";
-import Navigation from "@/components/Modules/Navigation";
+import Header from "@/components/common/Header";
+import Navigation from "@/components/common/Navigation";
 
 const AnotherLayout = (props) => {
   const { children } = props;

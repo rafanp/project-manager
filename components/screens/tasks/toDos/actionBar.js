@@ -1,8 +1,8 @@
-import Input from "@/components/UI/Input/Input";
+import Input from "@/components/ui/Input/Input";
 import { Flex } from "@chakra-ui/layout";
 
-import IconButton from "@/components/UI/Buttons";
-import { useCount, useDispatchCount } from "contexts/Tasks";
+import IconButton from "@/components/ui/Buttons";
+import { useCount, useDispatchCount } from "contexts/toDos/provider";
 
 const ActionBar = () => {
   const saveLocalStorage = () => {

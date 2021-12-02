@@ -1,6 +1,6 @@
-import Page from "@/components/Layout/Page";
+import Page from "@/components/layout/Page";
 import { ChakraProvider } from "@chakra-ui/react";
-import { CounterProvider } from "contexts/Tasks";
+import { CounterProvider } from "contexts/toDos/provider";
 import { theme } from "styles/theme";
 
 export default function MyApp({ Component, pageProps }) {
