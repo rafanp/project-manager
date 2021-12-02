@@ -1,7 +1,7 @@
-import Page from "@/components/layout/Page";
+import Page from "@/components/layouts/Page";
 import { ChakraProvider } from "@chakra-ui/react";
-import { CounterProvider } from "contexts/toDos/provider";
-import { theme } from "styles/theme";
+import { CounterProvider } from "app/contexts/toDos/provider";
+import { theme } from "app/styles/theme";
 
 export default function MyApp({ Component, pageProps }) {
   const getLayout =
