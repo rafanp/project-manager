@@ -4,10 +4,13 @@ import {
   createContext,
   useState,
   useEffect,
+  useCallback,
 } from "react";
 import { useToast } from "@chakra-ui/react";
 
 import { v4 as uuidv4 } from "uuid";
+import { api } from "app/services/api";
+import { deleteTask, getAllTasks } from "app/services/fauna";
 
 const TaskContext = createContext();
 
@@ -15,55 +18,69 @@ export function TaskProvider({ children }) {
   const toast = useToast();
 
   const [todoList, setTodoList] = useState(() => {
-    if (typeof window !== "undefined") {
-      const storagedCart = localStorage.getItem("@ProjectManager:todoList");
+    // if (typeof window !== "undefined") {
+    //   const storageTasks = localStorage.getItem("@ProjectManager:todoList");
 
-      if (storagedCart) {
-        return JSON.parse(storagedCart);
-      }
-    }
+    //   if (storageTasks) {
+    //     return JSON.parse(storageTasks);
+    //   }
+    // }
 
     return [];
   });
 
-  useEffect(() => {
-    localStorage.setItem("@ProjectManager:todoList", JSON.stringify(todoList));
-  }, [todoList]);
+  // useEffect(() => {
+  //   localStorage.setItem("@ProjectManager:todoList", JSON.stringify(todoList));
+  // }, [todoList]);
 
-  const addTodo = (todo) => {
-    setTodoList([
-      ...todoList,
-      {
-        text: todo,
-        isChecked: false,
-        id: uuidv4(),
-      },
-    ]);
+  const refreshData = useCallback(async () => {
+    const response = await api.get("/tasks");
+    setTodoList(response.data);
+  }, []);
+
+  useEffect(() => {
+    // refreshData();
+  }, []);
+
+  const addTodo = async (todo) => {
+    const todoItem = {
+      text: todo,
+      isChecked: false,
+      id: uuidv4(),
+    };
+
+    setTodoList([...todoList, todoItem]);
+    const response = await api.post("/tasks", todoItem);
+    // refreshData();
+    console.log("response :", response);
   };
 
-  const removeTodo = (todoItemId) => {
+  const removeTodo = async (taskId) => {
     try {
-      const filteredTodos = todoList.filter((item) => item.id !== todoItemId);
-      setTodoList(filteredTodos);
+      const filteredTasks = todoList.filter((item) => item.id !== taskId);
+      setTodoList(filteredTasks);
+      await api.delete("/tasks", { data: taskId });
       toast({
-        description: "Item removido da lista.",
+        description: "Item removed from the list.",
         status: "success",
         duration: 3000,
         isClosable: true,
       });
     } catch (error) {
       toast({
-        description: "Erro ao remover o item da lista.",
+        description: "Error removing item from list.",
         status: "error",
         duration: 3000,
         isClosable: true,
       });
+    } finally {
+      refreshData();
     }
   };
 
-  const handleCheckbox = (todoItemId) => {
+  const handleCheckbox = async (taskId, isChecked) => {
     const updatedTodos = todoList.map((item) => {
-      if (item.id === todoItemId) {
+      if (item.id === taskId) {
         return { ...item, isChecked: !item.isChecked };
       } else {
         return item;
@@ -71,11 +88,19 @@ export function TaskProvider({ children }) {
     });
 
     setTodoList(updatedTodos);
+    await api.put("/tasks", { taskId, isChecked: !isChecked });
   };
 
   return (
     <TaskContext.Provider
-      value={{ removeTodo, addTodo, handleCheckbox, todoList }}
+      value={{
+        removeTodo,
+        addTodo,
+        handleCheckbox,
+        todoList,
+        setTodoList,
+        refreshData,
+      }}
     >
       {children}
     </TaskContext.Provider>
