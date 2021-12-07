@@ -8,16 +8,17 @@ const TodoList = () => {
 
   return (
     <Stack spacing={2}>
-      {todoList.map((item) => {
-        return (
-          <TodoItem
-            key={item.id}
-            id={item.id}
-            text={item.text}
-            isChecked={item.isChecked}
-          />
-        );
-      })}
+      {todoList &&
+        todoList.map((item) => {
+          return (
+            <TodoItem
+              key={item.id}
+              id={item.id}
+              text={item.text}
+              isChecked={item.isChecked}
+            />
+          );
+        })}
     </Stack>
   );
 };

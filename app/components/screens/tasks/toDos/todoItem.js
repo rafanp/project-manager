@@ -15,7 +15,7 @@ const TodoItem = ({ id, text, isChecked }) => {
           size="lg"
           mr={4}
           isChecked={isChecked}
-          onChange={() => handleCheckbox(id)}
+          onChange={() => handleCheckbox(id, isChecked)}
         />
         <Text as={isChecked && "s"}> {text} </Text>
       </Flex>
